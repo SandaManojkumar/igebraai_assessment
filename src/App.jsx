@@ -3,7 +3,7 @@ import zion from "../src/assets/zion.png";
 import matrix from "../src/assets/matrix.png";
 import cypher from "../src/assets/cypher.png";
 import neo from "../src/assets/neo.png";
-import morpheos from "../src/assets/morpheos.png";   // Assuming this is Morpheus
+import morpheusImage from "../src/assets/morpheos.png";
 
 const products = [
   {
@@ -140,7 +140,6 @@ function App() {
 
     {/* Desktop Navigation */}
     <div className="desktop-nav" style={{
-      display: 'none',
       alignItems: 'center',
       gap: '40px',
       fontSize: '15.8px',
@@ -166,7 +165,7 @@ function App() {
         }} className="nav-underline"></span>
       </a>
       <a href="#cypher" style={{ textDecoration: 'none', color: 'inherit' }}>Cypher</a>
-      <a href="#morpheos" style={{ textDecoration: 'none', color: 'inherit' }}>Morpheos</a>
+      <a href="#morpheus" style={{ textDecoration: 'none', color: 'inherit' }}>Morpheus</a>
       <a href="#zion" style={{ textDecoration: 'none', color: 'inherit' }}>Zion</a>
       <a href="#neo" style={{ textDecoration: 'none', color: 'inherit' }}>NEO</a>
       <a href="#matrix" style={{ textDecoration: 'none', color: 'inherit' }}>Matrix</a>
@@ -175,7 +174,6 @@ function App() {
 
     {/* Desktop Buttons */}
     <div className="desktop-buttons" style={{
-      display: 'none',
       alignItems: 'center',
       gap: '14px'
     }}>
@@ -232,7 +230,11 @@ function App() {
     </div>
 
     {/* Mobile Menu Button */}
-    <button 
+    <button
+      className="mobile-menu-toggle"
+      aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+      aria-expanded={mobileMenuOpen}
+      aria-controls="mobile-menu"
       onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
       style={{
         background: 'none',
@@ -252,7 +254,9 @@ function App() {
 
   {/* Mobile Menu - Improved */}
   {mobileMenuOpen && (
-    <div style={{
+    <div
+      id="mobile-menu"
+      style={{
       backgroundColor: 'white',
       padding: '32px 28px',
       borderTop: '1px solid #e2e8f0',
@@ -271,7 +275,7 @@ function App() {
         Products
       </a>
       <a href="#cypher" style={{ display: 'block', padding: '16px 0', fontSize: '18.5px', fontWeight: '500', color: '#1e2937', textDecoration: 'none' }} onClick={() => setMobileMenuOpen(false)}>Cypher</a>
-      <a href="#morpheos" style={{ display: 'block', padding: '16px 0', fontSize: '18.5px', fontWeight: '500', color: '#1e2937', textDecoration: 'none' }} onClick={() => setMobileMenuOpen(false)}>Morpheos</a>
+      <a href="#morpheus" style={{ display: 'block', padding: '16px 0', fontSize: '18.5px', fontWeight: '500', color: '#1e2937', textDecoration: 'none' }} onClick={() => setMobileMenuOpen(false)}>Morpheus</a>
       <a href="#zion" style={{ display: 'block', padding: '16px 0', fontSize: '18.5px', fontWeight: '500', color: '#1e2937', textDecoration: 'none' }} onClick={() => setMobileMenuOpen(false)}>Zion</a>
       <a href="#neo" style={{ display: 'block', padding: '16px 0', fontSize: '18.5px', fontWeight: '500', color: '#1e2937', textDecoration: 'none' }} onClick={() => setMobileMenuOpen(false)}>NEO</a>
       <a href="#matrix" style={{ display: 'block', padding: '16px 0', fontSize: '18.5px', fontWeight: '500', color: '#1e2937', textDecoration: 'none' }} onClick={() => setMobileMenuOpen(false)}>Matrix</a>
@@ -388,7 +392,7 @@ function App() {
       <section id="morpheus" style={{ padding: '100px 24px', background: '#f8fafc' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '60px', flexWrap: 'wrap' }}>
           <div style={{ flex: '1 1 500px', textAlign: 'center' }}>
-            <img src={morpheos} alt="Morpheus" style={{ width: '100%', maxWidth: '480px', borderRadius: '20px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }} />
+            <img src={morpheusImage} alt="Morpheus" style={{ width: '100%', maxWidth: '480px', borderRadius: '20px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }} />
           </div>
           <div style={{ flex: '1 1 500px' }}>
             <div style={{ color: '#e11d48', fontSize: '14px', fontWeight: '600', letterSpacing: '1px' }}>AI FOR TEACHERS</div>
@@ -492,13 +496,15 @@ function App() {
             <div key={index} style={{ background: 'white', marginBottom: '12px', borderRadius: '16px', border: '1px solid #e2e8f0', overflow: 'hidden' }}>
               <button 
                 onClick={() => toggleFaq(index)}
+                aria-expanded={openFaqIndex === index}
+                aria-controls={`faq-answer-${index}`}
                 style={{ width: '100%', padding: '24px', textAlign: 'left', background: 'none', border: 'none', display: 'flex', justifyContent: 'space-between', fontSize: '17px', fontWeight: '600' }}
               >
                 {faq.question}
                 <span style={{ transform: openFaqIndex === index ? 'rotate(45deg)' : 'rotate(0)', transition: '0.3s', fontSize: '24px' }}>+</span>
               </button>
               {openFaqIndex === index && (
-                <div style={{ padding: '0 24px 28px', color: '#475569', lineHeight: '1.7' }}>{faq.answer}</div>
+                <div id={`faq-answer-${index}`} style={{ padding: '0 24px 28px', color: '#475569', lineHeight: '1.7' }}>{faq.answer}</div>
               )}
             </div>
           ))}

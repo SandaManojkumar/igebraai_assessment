@@ -14,6 +14,15 @@ body {
   overflow-x: hidden;
 }
 
+.desktop-nav,
+.desktop-buttons {
+  display: none;
+}
+
+.mobile-menu-toggle {
+  display: block;
+}
+
 /* ====================== NAVIGATION ====================== */
 /* NAVBAR */
 nav {
@@ -246,6 +255,15 @@ nav {
 
 /* Responsive Enhancements */
 @media (min-width: 768px) {
+  .desktop-nav,
+  .desktop-buttons {
+    display: flex;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+  }
+
   .nav-links,
   .nav-actions {
     display: flex;
